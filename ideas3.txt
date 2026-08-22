@@ -1,43 +1,91 @@
-Scene Draw-Call Analyzer
+Unused Asset Detector
 
-Purpose: Analyze the rendering workload of a scene and identify what is responsible for individual draw calls.
+Purpose: Find assets that appear to have no references and identify potential candidates for removal.
 
 Scope
 
-This should be broader than the Canvas Batch Analyzer.
+This should be completely self-contained and conservative.
 
-Analyze:
+It should scan the project when requested rather than maintaining a permanent database.
 
-* SpriteRenderers
-* MeshRenderers
-* SkinnedMeshRenderers
-* ParticleSystems
-* UI
+Reference sources
+
+Check:
+
+* Scenes
+* Prefabs
 * Materials
-* Shaders
-* Textures
-* Cameras
-* Rendering layers
-* Batching
-* Instancing
+* Animation Clips
+* Animator Controllers
+* ScriptableObjects
+* Sprite Atlases
+* Addressables
+* Resources
+* Build Settings
+* Asset references
+* Serialized Unity references
 
+Results
 
-Additional analysis
+Categorize assets:
 
-Identify potential causes of additional draws:
+Definitely Unreferenced
 
-* Different materials
-* Different textures
-* Different shaders
-* Material instances
-* Batching failures
-* Particle materials
-* Renderer settings
+Potentially Unreferenced
 
-Important
+Indirectly Referenced
 
-This tool should measure and explain, not attempt to automatically optimize the scene.
+Excluded
+
+Safety features
+
+Never immediately delete anything.
+
+Instead:
+
+Scan → Review → Select → Quarantine
+
+The tool could move selected assets into a generated quarantine folder while preserving their original paths in a temporary manifest.
+
+Then provide:
+
+Restore
+
+if something breaks.
+
+Important exclusions
+
+Allow users to explicitly exclude:
+
+* Folders
+* Asset types
+* File patterns
+* Addressable groups
+* Resources
+* Custom runtime-loading systems
+
+This is particularly important because reflection, string-based loading, and custom slot-game asset systems can create references that Unity’s normal dependency analysis cannot see.
 
 Deliverable
 
-One standalone SceneDrawCallAnalyzer EditorWindow.
+One standalone UnusedAssetDetector EditorWindow.
+
+⸻
+
+Recommended philosophy for all five
+
+Since you’re deliberately keeping them isolated, I’d give each tool the same user experience philosophy, but not share implementation:
+
+Select → Scan → Analyze → Highlight → Report
+
+And each should:
+
+* Have no dependency on the other tools.
+* Have no shared database.
+* Have no required runtime framework.
+* Be installable by simply dropping its folder into the Unity project.
+* Store its own preferences independently.
+* Support JSON/CSV export where useful.
+* Never modify project assets unless explicitly designed to do so.
+* Work on demand rather than continuously scanning the project.
+* Clearly distinguish measured facts from optimization recommendations.
