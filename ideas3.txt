@@ -1,0 +1,22 @@
+Scene Draw-Call Analyzer
+
+Purpose: Analyze the rendering workload of a scene and identify what is responsible for individual draw calls.
+
+Scope
+
+This should be broader than the Canvas Batch Analyzer.
+
+Analyze:
+
+* SpriteRenderers
+* MeshRenderers
+* SkinnedMeshRenderers
+* ParticleSystems
+* UI
+* Materials
+* Shaders
+* Textures
+* Cameras
+* Rendering layers
+* Batching
+* Instancing
