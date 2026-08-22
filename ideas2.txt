@@ -1,0 +1,48 @@
+Canvas Performance Analyzer
+
+Purpose: Analyze a selected Canvas and identify structural choices that could negatively affect UI performance.
+
+Scope
+
+* Operates on selected Canvas, GameObject, Scene, or Prefab.
+* No persistent project database.
+* Analysis generated on demand.
+* Results exist only for the current analysis session.
+
+Core analysis
+
+* Canvas count
+* Canvas render modes
+* UI element count
+* Hierarchy depth
+* Layout Groups
+* Content Size Fitters
+* Masks
+* RectMasks
+* Graphic Raycasters
+* TextMeshPro elements
+* CanvasGroups
+* Nested Canvases
+* Dynamic vs static UI elements
+
+Output
+
+Provide a ranked list of issues:
+
+Critical → Warning → Optimization Opportunity → Informational
+
+Each result should include:
+
+* GameObject
+* Problem
+* Why it matters
+* Suggested solution
+* Estimated impact
+
+Useful feature
+
+Clicking an issue selects the offending GameObject in the Hierarchy.
+
+Deliverable
+
+One standalone CanvasPerformanceAnalyzer EditorWindow.
