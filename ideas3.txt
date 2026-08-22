@@ -20,3 +20,24 @@ Analyze:
 * Rendering layers
 * Batching
 * Instancing
+
+
+Additional analysis
+
+Identify potential causes of additional draws:
+
+* Different materials
+* Different textures
+* Different shaders
+* Material instances
+* Batching failures
+* Particle materials
+* Renderer settings
+
+Important
+
+This tool should measure and explain, not attempt to automatically optimize the scene.
+
+Deliverable
+
+One standalone SceneDrawCallAnalyzer EditorWindow.
