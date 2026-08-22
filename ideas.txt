@@ -1,0 +1,46 @@
+Canvas Performance Analyzer
+
+Goal: Identify expensive or poorly structured Unity Canvas/UI setups before they become runtime performance problems.
+
+Core functionality
+
+* Scan selected Canvas or entire project.
+* Report Canvas render modes and hierarchy complexity.
+* Count UI Graphics, Images, TextMeshPro objects, Masks, Layout Groups, etc.
+* Identify nested/cascading layout systems.
+* Detect excessive Canvas rebuild potential.
+* Identify objects that unnecessarily force Canvas rebuilds.
+* Report Canvas element counts and hierarchy depth.
+* Identify unnecessary GraphicRaycaster components.
+* Show enabled/disabled UI elements and their associated costs.
+* Calculate approximate UI memory usage.
+
+Editor UI
+
+Canvas Performance →
+
+* Canvas hierarchy tree
+* Performance score
+* Element count
+* Rebuild risk
+* Raycaster count
+* Mask count
+* Layout component count
+* Warnings/errors
+
+Useful features
+
+* Click a warning → highlight offending GameObject.
+* “Optimize” button for safe automatic fixes.
+* Compare two Canvas versions.
+* Export HTML/JSON report.
+
+Slot-specific rules
+
+Flag things like:
+
+* Full-screen UI layered over other full-screen graphics.
+* Excessive help-screen hierarchy complexity.
+* Multiple unnecessary Canvas components.
+* UI elements that could be static sprites.
+* Excessive use of masks.
